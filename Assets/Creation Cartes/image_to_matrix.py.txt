@@ -1,0 +1,18 @@
+from PIL import Image
+import numpy as np
+
+def image_to_matrix(image_path):
+    # Ouvrir l'image et la convertir en noir et blanc
+    image = Image.open(image_path).convert('1')
+
+    # Convertir l'image en une matrice numpy
+    data = np.array(image)
+
+    # Transformer la matrice pour que les pixels noirs soient représentés par 1 et les blancs par 0
+    data = 1 - data  # cela fonctionne car dans l'image convertie par PIL, les pixels noirs sont 0 et les blancs sont 1
+
+    return data
+
+# Test de la fonction
+matrix = image_to_matrix('Tarascon.png')
+print(matrix)
